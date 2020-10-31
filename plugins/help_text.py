@@ -43,7 +43,7 @@ async def cb_handler(bot, update):
           await update.message.delete()
 
       if 'back' in update.data:
-          await update.message.edit(text=Translation.START_TEXT.format(update.from_user.first_name, Config.USER_NAME), 
+          await update.message.edit(text=Translation.START_TEXT, 
                 parse_mode='html', disable_web_page_preview=True,
                 #reply_to_message='update.message_id', 
                 reply_markup=InlineKeyboardMarkup(
@@ -75,7 +75,7 @@ async def help_user(bot, update):
         text=Translation.HELP_USER,
         parse_mode="html",
         disable_web_page_preview=True,
-        reply_to_message_id=update.message_id
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🏠HOME', callback_data='back')]])
     )
 
 
