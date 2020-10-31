@@ -35,7 +35,7 @@ def GetExpiryDate(chat_id):
 @pyrogram.Client.on_callback_query()
 async def btn_handler(bot, update):
 
-if 'help' in update.data:
+      if 'help' in update.data:
           await update.message.delete()
           await help_user(bot, update.message)
 
