@@ -35,12 +35,36 @@ def GetExpiryDate(chat_id):
 async def cb_handler(bot, update):
 
 
-      #if 'help' in update.data:
-          #await update.message.delete()
-          #await help_user(bot, update.message)
+      if 'help' in update.data:
+          await update.message.delete()
+          await help_user(bot, update.message)
 
       if 'close' in update.data:
           await update.message.delete()
+
+      if 'back' in update.data:
+          await update.message.edit(text=Translation.START_TEXT.format(update.from_user.first_name, Config.USER_NAME), 
+                parse_mode='html', disable_web_page_preview=True,
+                #reply_to_message='update.message_id', 
+                reply_markup=InlineKeyboardMarkup(
+                  [
+                      [
+                      InlineKeyboardButton('📫FEEDBACK', url='https://t.me/Stemlime_bot'),
+                      InlineKeyboardButton('📕ABOUT ME', callback_data='about')
+                      ],
+                      [
+                      InlineKeyboardButton('💡HELP', callback_data="help"),
+                      InlineKeyboardButton('🔐CLOSE', callback_data="close")
+                      ]
+                    ]
+                  )
+                )
+      if 'about' in update.data:
+          await update.message.edit(text=Translation.About, 
+                parse_mode='markdown', disable_web_page_preview=True,
+                #reply_to_message='update.message_id', 
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("↩️BACK", callback_data='back')]]))
+                
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["help"]))
 async def help_user(bot, update):
@@ -91,7 +115,7 @@ async def start(bot, update):
         ]
       )
     )
-    #)
+    
 
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["upgrade"]))
