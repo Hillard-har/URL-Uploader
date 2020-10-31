@@ -112,7 +112,18 @@ async def start(bot, update):
     await bot.send_message(
         chat_id=update.chat.id,
         text=Translation.START_TEXT,
-        reply_to_message_id=update.message_id
+        reply_markup=InlineKeyboardMarkup(
+        [
+          [
+          InlineKeyboardButton('📫FEEDBACK', url='https://t.me/Stemlime_bot'),
+          InlineKeyboardButton('📕ABOUT ME', callback_data='about')
+          ],
+          [
+          InlineKeyboardButton('💡HELP', callback_data="help"),
+          InlineKeyboardButton('🔐CLOSE', callback_data="close")
+          ]
+        ]
+      )
     )
 
 
@@ -126,4 +137,13 @@ async def upgrade(bot, update):
         parse_mode="html",
         reply_to_message_id=update.message_id,
         disable_web_page_preview=True
+    )
+
+@pyrogram.Client.on_message(pyrogram.Filters.command(["about"]))
+async def about(bot, update):
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text=Translation.About.format(update.from_user.first_name),
+        parse_mode="markdown",
+        reply_to_message_id=update.message_id
     )
