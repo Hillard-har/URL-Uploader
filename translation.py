@@ -1,13 +1,13 @@
+ sample_config import Config
+
 class Translation(object):
-    START_TEXT = """Hello,
-This is a Telegram URL Upload Bot made by @prgofficial
+    START_TEXT = """Hello <b>{}</b>,
 
-<b>Please send me any Direct download URL link, I can upload to telegram as File/Video</b>
+ɪ ᴀᴍ ᴀ sɪᴍᴘʟᴇ upload ʙᴏᴛ 
 
-/help for more details..
+ɪ ᴄᴀɴ upload ғɪʟᴇs ᴡɪᴛʜ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ᴀɴᴅ ᴜᴘʟᴏᴀᴅ ᴀs ᴠɪᴅᴇᴏ ᴏʀ ғɪʟᴇ. 
 
-Support Group : @moviesonlydiscussion
-© @prgofficial"""
+"""
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
     UPGRADE_TEXT = "<b>👉 Create own Clone Bot.. </b>  /help for Details"
