@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 
 import os
 import sqlite3
+from pyrogram import InlineKeyboardMarkup, InlineKeyboardButton
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
@@ -30,6 +31,16 @@ def GetExpiryDate(chat_id):
     Config.AUTH_USERS.add(683538773)
     return expires_at
 
+@pyrogram.Client.on_callback_query()
+async def cb_handler(bot, update):
+
+
+      #if 'help' in update.data:
+          #await update.message.delete()
+          #await help_user(bot, update.message)
+
+      if 'close' in update.data:
+          await update.message.delete()
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["help"]))
 async def help_user(bot, update):
