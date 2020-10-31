@@ -76,17 +76,10 @@ async def help_user(bot, update):
     TRChatBase(update.from_user.id, update.text, "/help")
     await bot.send_message(
         chat_id=update.chat.id,
-        text=Translation.HELP_USER,
+        text=Translation.HELP_USER.format(update.from_user.first_name, Config.USER_NAME),
         parse_mode="html",
         disable_web_page_preview=True,
-        reply_markup=InlineKeyboardMarkup(
-        [
-          [
-           InlineKeyboardButton('🏠HOME', callback_data='back'),
-           InlineKeyboardButton('🔐CLOSE', callback_data='close')
-          ]
-        ]
-      )
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🏠HOME', callback_data='back')]])
     )
 
 
