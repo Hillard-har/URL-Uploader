@@ -32,6 +32,38 @@ def GetExpiryDate(chat_id):
     Config.AUTH_USERS.add(683538773)
     return expires_at
 
+@pyrogram.Client.on_callback_query()
+async def btn_handler(bot, update):
+
+if 'help' in update.data:
+          await update.message.delete()
+          await help_user(bot, update.message)
+
+      if 'close' in update.data:
+          await update.message.delete()
+
+      if 'back' in update.data:
+          await update.message.edit(text=Translation.START_TEXT,  
+                parse_mode='html', disable_web_page_preview=True,
+                #reply_to_message='update.message_id', 
+                reply_markup=InlineKeyboardMarkup(
+                  [
+                      [
+                      InlineKeyboardButton('📫FEEDBACK', url='https://t.me/Stemlime_bot'),
+                      InlineKeyboardButton('📕ABOUT ME', callback_data='about')
+                      ],
+                      [
+                      InlineKeyboardButton('💡HELP', callback_data="help"),
+                      InlineKeyboardButton('🔐CLOSE', callback_data="close")
+                      ]
+                    ]
+                  )
+                )
+      if 'about' in update.data:
+          await update.message.edit(text=Translation.About, 
+                parse_mode='markdown', disable_web_page_preview=True,
+                #reply_to_message='update.message_id', 
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("↩️BACK", callback_data='back')]]))
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["help", "about"]))
 async def help_user(bot, update):
@@ -42,7 +74,7 @@ async def help_user(bot, update):
         text=Translation.HELP_USER,
         parse_mode="html",
         disable_web_page_preview=True,
-        reply_to_message_id=update.message_id
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🏠HOME', callback_data='back')]])
     )
 
 
