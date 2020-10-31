@@ -35,12 +35,12 @@ def GetExpiryDate(chat_id):
 async def btn_handler(bot, update):
 
 
-      if 'help' in update.data:
-          await update.message.delete()
-          await help_user(bot, update.message)
+      #if 'help' in update.data:
+          #await update.message.delete()
+          #await help_user(bot, update.message)
 
-      if 'close' in update.data:
-          await update.message.delete()
+      #if 'close' in update.data:
+          #await update.message.delete()
 
       if 'back' in update.data:
           await update.message.edit(text=Translation.START_TEXT, 
