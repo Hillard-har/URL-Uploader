@@ -83,7 +83,7 @@ Free users only 1 request per 30 minutes.
     SLOW_URL_DECED = "Gosh that seems to be a very slow URL. Since you were screwing my home, I am in no mood to download this file. Meanwhile, why don't you try this:==> https://shrtz.me/PtsVnf6 and get me a fast URL so that I can upload to Telegram, without me slowing down for other users."
     About = """𝐀𝐛𝐨𝐮𝐭 𝐌𝐞 ,
 
-\n○ **ᴍʏ ɴᴀᴍᴇ** : ᎡᎬΝᎪᎷᎬᎡ Ꮩ.1.0
+\n○ **ᴍʏ ɴᴀᴍᴇ** : LINKER
 
 ○ **ʟᴀɴɢᴜᴀɢᴇ** : ᴘʏᴛʜᴏɴ 
 
