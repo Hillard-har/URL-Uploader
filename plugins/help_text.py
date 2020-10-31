@@ -64,7 +64,7 @@ async def btn_handler(bot, update):
           await update.message.edit(text=Translation.About, 
                 parse_mode='markdown', disable_web_page_preview=True,
                 #reply_to_message='update.message_id', 
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("↩️BACK", 'back')]]))
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("↩️BACK", callback_data='back')]]))
                 
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["help"]))
