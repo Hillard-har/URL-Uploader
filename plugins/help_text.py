@@ -51,11 +51,11 @@ async def btn_handler(bot, update):
                   [
                       [
                       InlineKeyboardButton('📫FEEDBACK', url='https://t.me/Stemlime_bot'),
-                      InlineKeyboardButton('📕ABOUT ME', 'about')
+                      InlineKeyboardButton('📕ABOUT ME', callback_data='about')
                       ],
                       [
-                      InlineKeyboardButton('💡HELP', 'help'),
-                      InlineKeyboardButton('🔐CLOSE', 'close')
+                      InlineKeyboardButton('💡HELP', callback_data='help'),
+                      InlineKeyboardButton('🔐CLOSE', callback_data='close')
                       ]
                     ]
                   )
@@ -76,7 +76,7 @@ async def help_user(bot, update):
         text=Translation.HELP_USER,
         parse_mode="html",
         disable_web_page_preview=True,
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🏠HOME', 'back')]])
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🏠HOME', callback_data='back')]])
     )
 
 
@@ -107,11 +107,11 @@ async def start(bot, update):
         [
           [
           InlineKeyboardButton('📫FEEDBACK', url='https://t.me/Stemlime_bot'),
-          InlineKeyboardButton('📕ABOUT ME', 'about')
+          InlineKeyboardButton('📕ABOUT ME', callback_data='about')
           ],
           [
-          InlineKeyboardButton('💡HELP', 'help'),
-          InlineKeyboardButton('🔐CLOSE', 'close')
+          InlineKeyboardButton('💡HELP', callback_data='help'),
+          InlineKeyboardButton('🔐CLOSE', callback_data='close')
           ]
         ]
       )
