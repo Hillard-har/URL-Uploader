@@ -32,7 +32,7 @@ def GetExpiryDate(chat_id):
     return expires_at
 
 @pyrogram.Client.on_callback_query()
-async def cb_handler(bot, update):
+async def btn_handler(bot, update):
 
 
       if 'help' in update.data:
