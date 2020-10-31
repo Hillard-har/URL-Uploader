@@ -51,11 +51,11 @@ async def btn_handler(bot, update):
                   [
                       [
                       InlineKeyboardButton('📫FEEDBACK', url='https://t.me/Stemlime_bot'),
-                      InlineKeyboardButton('📕ABOUT ME', callback_data='about')
+                      InlineKeyboardButton('📕ABOUT ME', 'about')
                       ],
                       [
-                      InlineKeyboardButton('💡HELP', callback_data="help"),
-                      InlineKeyboardButton('🔐CLOSE', callback_data="close")
+                      InlineKeyboardButton('💡HELP', 'help'),
+                      InlineKeyboardButton('🔐CLOSE', 'close')
                       ]
                     ]
                   )
@@ -64,7 +64,7 @@ async def btn_handler(bot, update):
           await update.message.edit(text=Translation.About, 
                 parse_mode='markdown', disable_web_page_preview=True,
                 #reply_to_message='update.message_id', 
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("↩️BACK", callback_data='back')]]))
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("↩️BACK", 'back')]]))
                 
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["help"]))
@@ -76,7 +76,7 @@ async def help_user(bot, update):
         text=Translation.HELP_USER,
         parse_mode="html",
         disable_web_page_preview=True,
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🏠HOME', callback_data='back')]])
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🏠HOME', 'back')]])
     )
 
 
@@ -107,11 +107,11 @@ async def start(bot, update):
         [
           [
           InlineKeyboardButton('📫FEEDBACK', url='https://t.me/Stemlime_bot'),
-          InlineKeyboardButton('📕ABOUT ME', callback_data='about')
+          InlineKeyboardButton('📕ABOUT ME', 'about')
           ],
           [
-          InlineKeyboardButton('💡HELP', callback_data="help"),
-          InlineKeyboardButton('🔐CLOSE', callback_data="close")
+          InlineKeyboardButton('💡HELP', 'help'),
+          InlineKeyboardButton('🔐CLOSE', 'close')
           ]
         ]
       )
