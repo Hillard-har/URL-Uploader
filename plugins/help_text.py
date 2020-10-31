@@ -40,7 +40,14 @@ async def help_user(bot, update):
         text=Translation.HELP_USER,
         parse_mode="html",
         disable_web_page_preview=True,
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🏠HOME', callback_data='back')]])
+        reply_markup=InlineKeyboardMarkup(
+        [
+          [
+           InlineKeyboardButton('🏠HOME', callback_data='back'),
+           InlineKeyboardButton('🔐CLOSE', callback_data='close')
+          ]
+        ]
+      )
     )
 
 
