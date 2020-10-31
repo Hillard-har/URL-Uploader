@@ -43,7 +43,7 @@ async def btn_handler(bot, update):
           await update.message.delete()
 
       if 'back' in update.data:
-          await update.message.edit(text=Translation.START_TEXT,  
+          await update.message.edit(text=Translation.START_TEXT),  
                 parse_mode='html', disable_web_page_preview=True,
                 #reply_to_message='update.message_id', 
                 reply_markup=InlineKeyboardMarkup(
