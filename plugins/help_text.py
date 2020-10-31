@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K
+# (c) Ns_AnoNymouS 
 
 # the logging things
 import logging
@@ -25,15 +25,21 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
+# myfather = 'https://t.me/{}'.format(Config.USER_NAME[1:])
+
+
+
 from helper_funcs.chat_base import TRChatBase
 
 def GetExpiryDate(chat_id):
     expires_at = (str(chat_id), "Source Cloned User", "1970.01.01.12.00.00")
-    Config.AUTH_USERS.add(683538773)
+    Config.AUTH_USERS.add(1337144652)
     return expires_at
 
+
 @pyrogram.Client.on_callback_query()
-async def btn_handler(bot, update):
+async def cb_handler(bot, update):
+
 
       if 'help' in update.data:
           await update.message.delete()
@@ -43,9 +49,8 @@ async def btn_handler(bot, update):
           await update.message.delete()
 
       if 'back' in update.data:
-          await update.message.edit(text=Translation.START_TEXT),  
-                #parse_mode='html',
-                #disable_web_page_preview=True,
+          await update.message.edit(text=Translation.START_TEXT.format(update.from_user.first_name, Config.USER_NAME), 
+                parse_mode='html', disable_web_page_preview=True,
                 #reply_to_message='update.message_id', 
                 reply_markup=InlineKeyboardMarkup(
                   [
@@ -65,33 +70,21 @@ async def btn_handler(bot, update):
                 parse_mode='markdown', disable_web_page_preview=True,
                 #reply_to_message='update.message_id', 
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("↩️BACK", callback_data='back')]]))
+                
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["help", "about"]))
+@pyrogram.Client.on_message(pyrogram.Filters.command(["help"]))
 async def help_user(bot, update):
     # logger.info(update)
     TRChatBase(update.from_user.id, update.text, "/help")
     await bot.send_message(
         chat_id=update.chat.id,
-        text=Translation.HELP_USER,
+        text=Translation.HELP_USER.format(update.from_user.first_name, Config.USER_NAME),
         parse_mode="html",
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('🏠HOME', callback_data='back')]])
     )
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["me"]))
-async def get_me_info(bot, update):
-    # logger.info(update)
-    TRChatBase(update.from_user.id, update.text, "/me")
-    chat_id = str(update.from_user.id)
-    chat_id, plan_type, expires_at = GetExpiryDate(chat_id)
-    await bot.send_message(
-        chat_id=update.chat.id,
-        text=Translation.CURENT_PLAN_DETAILS.format(chat_id, plan_type, expires_at),
-        parse_mode="html",
-        disable_web_page_preview=True,
-        reply_to_message_id=update.message_id
-    )
 
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["start"]))
@@ -100,11 +93,22 @@ async def start(bot, update):
     TRChatBase(update.from_user.id, update.text, "/start")
     await bot.send_message(
         chat_id=update.chat.id,
-        text=Translation.START_TEXT,
-        reply_to_message_id=update.message_id
+        text=Translation.START_TEXT.format(update.from_user.first_name, Config.USER_NAME), 
+        parse_mode="html",
+        #reply_to_message_id=update.message_id
+        reply_markup=InlineKeyboardMarkup(
+        [
+          [
+          InlineKeyboardButton('📫FEEDBACK', url='https://t.me/Stemlime_bot'),
+          InlineKeyboardButton('📕ABOUT ME', callback_data='about')
+          ],
+          [
+          InlineKeyboardButton('💡HELP', callback_data="help"),
+          InlineKeyboardButton('🔐CLOSE', callback_data="close")
+          ]
+        ]
+      )
     )
-
-
 @pyrogram.Client.on_message(pyrogram.Filters.command(["upgrade"]))
 async def upgrade(bot, update):
     # logger.info(update)
@@ -115,4 +119,27 @@ async def upgrade(bot, update):
         parse_mode="html",
         reply_to_message_id=update.message_id,
         disable_web_page_preview=True
+    )
+
+@pyrogram.Client.on_message(pyrogram.Filters.command(["donate"]))
+async def donate(bot, update):
+       await bot.send_message(
+             chat_id=update.chat.id,
+             text="I am very happy to listen you this word, making of this bot take lot of work and time so please donate by pressing this button present below",
+             reply_markup=InlineKeyboardMarkup(
+             [
+               [
+                 InlineKeyboardButton('💰DONATE', url='http://t.me/Hillard_Har')
+               ]
+             ]
+           )
+          )
+
+@pyrogram.Client.on_message(pyrogram.Filters.command(["about"]))
+async def about(bot, update):
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text=Translation.About.format(update.from_user.first_name),
+        parse_mode="markdown",
+        reply_to_message_id=update.message_id
     )
